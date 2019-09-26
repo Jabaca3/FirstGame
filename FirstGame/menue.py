@@ -1,6 +1,12 @@
 import pygame
 import os
-from FirstGame.player import Player
+from FirstGameGit.FirstGame.player import Player
+
+"""
+Joseph Baca
+9/26
+Testing FirstGame commit
+"""
 
 class Game:
     def __init__(self):
