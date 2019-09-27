@@ -28,6 +28,8 @@ class Player:
             self.animation_count=0
         """
         pygame.draw.rect(self.surface, (255, 0, 0), (self.x, self.y, self.recwidth, self.recheight))
+        pygame.draw.rect(self.surface, (0, 255, 0), (self.x-20, self.y-40, self.health, 20))
+
         self.movement()
 
 
@@ -39,7 +41,8 @@ class Player:
             self.x -= self.vel
         if keys[pygame.K_RIGHT] and self.x < self.surface_width - self.recwidth - self.vel:
             self.x += self.vel
-        if not(self.isJump):
+
+        if not self.isJump:
 
             if keys[pygame.K_UP] and self.y > self.vel and self.y > self.middleOfroom - self.recheight/2:
                 self.y -= self.vel
@@ -49,13 +52,22 @@ class Player:
 
             if keys[pygame.K_SPACE]:
                 self.isJump = True
+
         else:
             if self.jumpCount >= -10:
                 neg = 1
-                if self.jumpCount <0:
+
+                if self.jumpCount < 0:
                     neg = -1
+
                 self.y -= (self.jumpCount **2)/2 * neg
                 self.jumpCount -= 1
+
             else:
                 self.isJump = False
                 self.jumpCount = 10
+
+    def smallHit(self):
+        self.health -=1
+    def bigHit(self):
+        self.health -=5
