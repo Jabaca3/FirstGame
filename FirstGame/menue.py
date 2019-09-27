@@ -5,7 +5,6 @@ from FirstGameGit.FirstGame.player import Player
 """
 Joseph Baca
 9/26
-test1 
 """
 
 class Game:
