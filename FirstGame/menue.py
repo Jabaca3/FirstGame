@@ -4,24 +4,24 @@ from FirstGameGit.FirstGame.player import Player
 
 """
 Joseph Baca
-9/26
+9/26/2019
 """
 
 class Game:
     def __init__(self):
         self.x = 50
         self.y = 50
-        self.width = 1000
-        self.height = 700
+        self.width = 1920
+        self.height = 1080
         self.animation_count = 0
         self.health = 1
         self.move_count = 0
         self.move_dis = 0
         self.img = None
         self.surface = pygame.display.set_mode((self.width, self.height))
-        self.player = Player(self.surface, 50, 50, self.width, self.height)
-        self.bg = pygame.image.load(os.path.join("images","bg.png"))
-        self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
+        self.player = Player(self.surface, 114, 699, self.width, self.height)
+        self.bg = pygame.image.load(os.path.join("images","office.png"))
+        #self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.clicks = [] #remove
 
 
@@ -30,7 +30,7 @@ class Game:
         clock = pygame.time.Clock()
 
         while run:
-            clock.tick(60)
+            clock.tick(120)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False

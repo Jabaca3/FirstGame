@@ -9,9 +9,12 @@ class Player:
         self.surface_width = width
         self.surface_height = height
         self.animation_count = 0
-        self.vel = 5
-        self.recheight = 60
-        self.recwidth = 40
+        self.vel = 15
+        self.recheight = 100
+        self.recwidth = 60
+        self.middleOfroom = 594
+        self.jumpCount = 10
+        self.isJump = False
 
 
     def draw(self):
@@ -36,7 +39,23 @@ class Player:
             self.x -= self.vel
         if keys[pygame.K_RIGHT] and self.x < self.surface_width - self.recwidth - self.vel:
             self.x += self.vel
-        if keys[pygame.K_UP] and self.y > self.vel:
-            self.y -= self.vel
-        if keys[pygame.K_DOWN] and self.y < self.surface_height - self.recheight - self.vel:
-            self.y += self.vel
+        if not(self.isJump):
+
+            if keys[pygame.K_UP] and self.y > self.vel and self.y > self.middleOfroom - self.recheight/2:
+                self.y -= self.vel
+
+            if keys[pygame.K_DOWN] and self.y < self.surface_height - self.recheight - self.vel:
+                self.y += self.vel
+
+            if keys[pygame.K_SPACE]:
+                self.isJump = True
+        else:
+            if self.jumpCount >= -10:
+                neg = 1
+                if self.jumpCount <0:
+                    neg = -1
+                self.y -= (self.jumpCount **2)/2 * neg
+                self.jumpCount -= 1
+            else:
+                self.isJump = False
+                self.jumpCount = 10
